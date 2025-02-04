@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      - name: Set up Node.js   
+        uses: actions/setup-node@v3
+        with:    
+          node-version: '16' 
+
+      - name: Install remark-cli and plugins
+        run: |
+          npm install remark-cli remark-preset-lint-consistent
+
+      - name: Fix Markdown issues 
+        run: |
+          npx remark . --use remark-preset-lint-consistent --output 
+
+      - name: Run markdown lint
+        run: |
+          npx remark . --use remark-preset-lint-consistent --frail
