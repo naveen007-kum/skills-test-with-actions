@@ -34,7 +34,7 @@ jobs:
 
       - name: Fix Markdown issues 
         run: |
-          npx remark . --use remark-preset-lint-consistent --output   <!-- NEW STEP -->
+          npx remark . --use remark-preset-lint-consistent --output 
 
       - name: Run markdown lint
         run: |
